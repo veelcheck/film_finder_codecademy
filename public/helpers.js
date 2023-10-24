@@ -22,12 +22,15 @@ export const getSelectedGenre = () => {
 getSelectedGenre();
 
 // Displays the like and dislike buttons on the page
-export const showBtns = () => {
+const showBtns = () => {
     const btnDiv = document.getElementById('likeOrDislikeBtns');
+
+    btnDiv.removeAttribute('hidden');
+
+// My addition: displays like/displike count together with a reset count button
     const countDiv = document.getElementById('likeOrDislikeCount');
     const resetBtn = document.getElementById('reset');
     
-    btnDiv.removeAttribute('hidden');
     countDiv.removeAttribute('hidden');
     resetBtn.removeAttribute('hidden');
 
@@ -49,14 +52,17 @@ export const clearCurrentMovie = () => {
    
     moviePosterDiv.innerHTML = '';
     movieTextDiv.innerHTML = '';
+
+// My addition: clears the cast form the screen
     movieCastDiv.innerHTML = '';
 }
 
 // After liking a movie, clears the current movie from the screen and gets another random movie
-export const likeMovie = () => {
+const likeMovie = () => {
     clearCurrentMovie();
     showRandomMovie();
 
+// My addition: counts and stores likes
     const likeCount = document.getElementById('count--likes');
     const value = parseInt(localStorage.getItem('likes')) || 0;
 
@@ -69,10 +75,11 @@ export const likeMovie = () => {
 };
 
 // After disliking a movie, clears the current movie from the screen and gets another random movie
-export const dislikeMovie = () => {
+const dislikeMovie = () => {
     clearCurrentMovie();
     showRandomMovie();
 
+// My addition: counts and stores dislikes
     const dislikeCount = document.getElementById('count--dislikes');
     const value = parseInt(localStorage.getItem('dislikes')) || 0;
 
@@ -83,7 +90,7 @@ export const dislikeMovie = () => {
       localStorage.setItem('dislikes', counter);
     }
 };
-
+// My addition: resets the count
 const reset = () => {
     localStorage.removeItem('likes');
     localStorage.removeItem('dislikes');
@@ -116,7 +123,7 @@ const createMovieTitle = (title) => {
 };
 
 
-// Create HTML for runtime
+// My addition: creates HTML for runtime
 const createMovieRuntime = (runtime) => {
   const movieRuntime = document.createElement('h3');
   movieRuntime.setAttribute('id', 'movieRuntime');
@@ -125,7 +132,7 @@ const createMovieRuntime = (runtime) => {
   return movieRuntime;
 }
 
-// Create HTML for release date
+// My addition: creates HTML for release date
 const createMovieReleaseDate = (release_date) => {
   const movieReleaseDate = document.createElement('h3');
   movieReleaseDate.setAttribute('id', 'movieReleaseDate');
@@ -143,7 +150,7 @@ const createMovieOverview = (overview) => {
     return overviewParagraph; 
 };
 
-// Create HTMl for cast list
+// My addition: creates HTMl for cast list
 const createCastList = (cast) => {
   const castListParaghraph = document.createElement('p');
   castListParaghraph.setAttribute('id', 'movieCastList');
@@ -161,6 +168,7 @@ export const getRandomMovie = (movies) => {
 };
 
 // Uses the DOM to create HTML to display the movie
+// My input: whatever concerns cast, runtime, release date or reset button
 export const displayMovie = (movieInfo, cast) => {
     const moviePosterDiv = document.getElementById('moviePoster');
     const movieTextDiv = document.getElementById('movieText');

@@ -65,6 +65,7 @@ const getMovieInfo = async (movie) => {
   }
 };
 
+// My input
 const getMovieCast = async (movie) => {
   const movieId = movie.id;
   const movieCastEndpoint = `/movie/${movieId}/credits`;
