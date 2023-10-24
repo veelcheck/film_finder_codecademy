@@ -31,16 +31,17 @@ const showBtns = () => {
     const countDiv = document.getElementById('likeOrDislikeCount');
     const resetBtn = document.getElementById('reset');
     
+    
     countDiv.removeAttribute('hidden');
     resetBtn.removeAttribute('hidden');
-
+    
     const likeCount = document.getElementById('count--likes');
     const value = parseInt(localStorage.getItem('likes')) || 0;
-    likeCount.innerHTML = `Movies you like: ${value}`;
+    likeCount.innerHTML = `<span class="hidden">Movies you </span>like: ${value}`;
 
     const dislikeCount = document.getElementById('count--dislikes');
     const value2 = parseInt(localStorage.getItem('dislikes')) || 0;
-    dislikeCount.innerHTML = `Movies you don't like: ${value2}`;
+    dislikeCount.innerHTML = `<span class="hidden">Movies you </span>don't like: ${value2}`;
 };
 
 
@@ -57,39 +58,57 @@ export const clearCurrentMovie = () => {
     movieCastDiv.innerHTML = '';
 }
 
+let titleArrayLikes = [];
+let titleArrayDislikes = [];
+
+
 // After liking a movie, clears the current movie from the screen and gets another random movie
 const likeMovie = () => {
     clearCurrentMovie();
     showRandomMovie();
 
-// My addition: counts and stores likes
+// My addition: counts and stores likes, shows title
     const likeCount = document.getElementById('count--likes');
-    const value = parseInt(localStorage.getItem('likes')) || 0;
+    const likeList = document.getElementById('title-list-likes');
 
-    if (likeMovie) {
-      let counter = value + 1;
-      likeCount.innerHTML = `Movies you like: ${counter}`;
+    const value = parseInt(localStorage.getItem('likes')) || 0;
+    const currentTitle = localStorage.getItem('title');
+    titleArrayLikes.push(currentTitle);
+
+    likeList.removeAttribute('hidden');
+
+    let counter = value + 1;
+    likeCount.innerHTML = `<span class="hidden">Movies you </span>like: ${counter}`;
+    localStorage.setItem('likes', counter);
   
-      localStorage.setItem('likes', counter);
-    }
+    likeList.innerHTML = titleArrayLikes.join(", ");
 };
+
 
 // After disliking a movie, clears the current movie from the screen and gets another random movie
 const dislikeMovie = () => {
     clearCurrentMovie();
     showRandomMovie();
 
-// My addition: counts and stores dislikes
+// My addition: counts and stores dislikes, shows titles
     const dislikeCount = document.getElementById('count--dislikes');
-    const value = parseInt(localStorage.getItem('dislikes')) || 0;
+    const dislikeList = document.getElementById('title-list-dislikes');
 
-    if (dislikeMovie) {
-      let counter = value + 1;
-      dislikeCount.innerHTML = `Movies you don't like: ${counter}`;
-  
-      localStorage.setItem('dislikes', counter);
-    }
+    const value = parseInt(localStorage.getItem('dislikes')) || 0;
+    const currentTitle = localStorage.getItem('title');
+    titleArrayDislikes.push(currentTitle);
+
+    
+    dislikeList.removeAttribute('hidden');
+
+    let counter = value + 1;
+    dislikeCount.innerHTML = `<span class="hidden">Movies you </span>don't like: ${counter}`;
+    localStorage.setItem('dislikes', counter);
+
+    dislikeList.innerHTML = titleArrayDislikes.join(", ");
+    
 };
+
 // My addition: resets the count
 const reset = () => {
     localStorage.removeItem('likes');
@@ -98,8 +117,8 @@ const reset = () => {
     const likeCount = document.getElementById('count--likes');
     const dislikeCount = document.getElementById('count--dislikes');
 
-    likeCount.innerHTML = `Movies you like: 0`;
-    dislikeCount.innerHTML = `Movies you don't like: 0`;
+    likeCount.innerHTML = `<span class="hidden">Movies you </span>like: 0`;
+    dislikeCount.innerHTML = `<span class="hidden">Movies you </span>don't like: 0`;
 }
 
 // Create HTML for movie poster
@@ -119,6 +138,7 @@ const createMovieTitle = (title) => {
     titleHeader.setAttribute('id', 'movieTitle');
     titleHeader.innerHTML = title;
 
+    localStorage.setItem('title', title);
     return titleHeader;
 };
 

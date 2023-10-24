@@ -58,6 +58,7 @@ h3 {
 
 #movieOtherInfo {
   width: 100%;
+  max-width: 1000px;
   font-family: 'Questrial';
   color: white;
   line-height: 1.25;
@@ -102,7 +103,7 @@ select {
   height: auto;
 }
 
-#likeOrDislikeBtns {
+#likeOrDislikeBtns, .title-list {
   text-align: center;
   margin-left: 2rem; 
   padding-block: 4em;
@@ -129,15 +130,22 @@ select {
 }
 
 #likeOrDislikeCount {
-  padding: 15px 25px;
-  display: flex;
+  padding: 1rem 2rem;
+
+}
+
+.count-wrapper {
+  display: grid;
+  grid-template-columns: 25% auto 30%;
   align-items: center;
+  justify-content: space-between;
+  margin-left: 1em;
 }
 
 .count {
   margin: 0;
   font-size: 1rem;
-  padding-right: 3em;
+  text-align: center;
 }
 
 #reset {
@@ -146,38 +154,42 @@ select {
   margin-block: 1em;
 }
 
+#title-list-likes {
+  background: rgb(36, 158, 87, 60%);
+}
+
+#title-list-dislikes {
+  background: rgb(199, 74, 74, 60%);
+} 
+
 @media (max-width: 860px) {
   h2 {
     font-size: 1.3rem;
     margin-left: 0;
   }
-  
-  #moviePoster {
+
+  #moviePoster, .hidden  {
     visibility: hidden;
     display: none;
   }
 
-  #movieTitle, #movieOverview, #movieRuntime, #movieReleaseDate, #movieCastList, #likeOrDislikeCount {
+  #movieTitle, 
+  #movieOverview, 
+  #movieRuntime, 
+  #movieReleaseDate, 
+  #movieCastList, 
+  #likeOrDislikeCount  {
     padding-inline: .5em;
   }
 
-  #likeOrDislikeBtns {
+  #likeOrDislikeBtns, .title-list {
     margin-block: .5em;
     padding-block: 1em;
     margin-left: 0;
   }
 
-  #likeOrDislikeCount {
-    padding-block: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .title-list {
+    padding-inline: .5em;
   }
-
-  .count {
-    text-align: center;
-    padding-right: 0;
-  }
-
   
 }
