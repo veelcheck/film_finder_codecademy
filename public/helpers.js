@@ -80,12 +80,20 @@ const likeMovie = () => {
     let counter = value + 1;
     likeCount.innerHTML = `<span class="hidden">Movies you </span>like: ${counter}`;
     localStorage.setItem('likes', counter);
-  
-    likeList.innerHTML = titleArrayLikes.join(", ") || JSON.parse(localStorage.getItem('titleLikes-stored'));
-    const titleLikestUpdated = likeList.innerHTML;
-    localStorage.setItem('titleLikes-stored', JSON.stringify(titleLikestUpdated));
+
+    const titleArrayLikesJoined = titleArrayLikes.join(", ");
     
-    console.log(JSON.parse(localStorage.getItem('titleLikes-stored')));
+    if (counter === 1) {
+        likeList.innerHTML = currentTitle;
+        localStorage.setItem('titleLikes-stored', JSON.stringify(titleArrayLikesJoined));
+        return
+    } else {
+        const titlesUnpacked = JSON.parse(localStorage.getItem('titleLikes-stored'));
+        likeList.innerHTML = `${titlesUnpacked}, ${currentTitle}`;
+        localStorage.setItem('titleLikes-stored', JSON.stringify(titleArrayLikesJoined));
+    }
+
+    //localStorage.setItem('titleLikes-stored', JSON.stringify(titleArrayLikesJoined));
 };
 
 
@@ -109,9 +117,22 @@ const dislikeMovie = () => {
     dislikeCount.innerHTML = `<span class="hidden">Movies you </span>don't like: ${counter}`;
     localStorage.setItem('dislikes', counter);
 
+    const titleArrayDislikesJoined = titleArrayDislikes.join(", ");
+
     dislikeList.innerHTML = titleArrayDislikes.join(", ");
-    
+
+    if (counter === 1) {
+        dislikeList.innerHTML = currentTitle;
+        localStorage.setItem('titleDislikes-stored', JSON.stringify(titleArrayDislikesJoined));
+    } else {
+        const titlesUnpacked = JSON.parse(localStorage.getItem('titleDislikes-stored'));
+        dislikeList.innerHTML = `${titlesUnpacked}, ${currentTitle}`;
+        localStorage.setItem('titleDislikes-stored', JSON.stringify(titleArrayDislikesJoined));
+    }
+
+    //localStorage.setItem('titleDislikes-stored', JSON.stringify(titleArrayDislikesJoined));
 };
+    
 
 // My addition: resets the count
 const reset = () => {
