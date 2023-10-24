@@ -139,6 +139,7 @@ const reset = () => {
     localStorage.removeItem('likes');
     localStorage.removeItem('dislikes');
     localStorage.removeItem('titleLikes-stored');
+    localStorage.removeItem('titleDislikes-stored');
 
     const likeCount = document.getElementById('count--likes');
     const dislikeCount = document.getElementById('count--dislikes');
