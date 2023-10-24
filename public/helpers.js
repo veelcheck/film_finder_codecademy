@@ -15,16 +15,27 @@ export const populateGenreDropdown = (genres) => {
 // Returns the current genre selection from the dropdown menu
 export const getSelectedGenre = () => {
     const selectedGenre = document.getElementById('genres').value;
+    
     return selectedGenre;
 };
+
+getSelectedGenre();
 
 // Displays the like and dislike buttons on the page
 export const showBtns = () => {
     const btnDiv = document.getElementById('likeOrDislikeBtns');
     const countDiv = document.getElementById('likeOrDislikeCount');
-
+    
     btnDiv.removeAttribute('hidden');
     countDiv.removeAttribute('hidden');
+
+    const likeCount = document.getElementById('count--likes');
+    const value = parseInt(localStorage.getItem('likes')) || 0;
+    likeCount.innerHTML = `Number of movies you like: ${value}`;
+
+    const dislikeCount = document.getElementById('count--dislikes');
+    const value2 = parseInt(localStorage.getItem('dislikes')) || 0;
+    dislikeCount.innerHTML = `Number of movies you like: ${value2}`;
 };
 
 
@@ -49,7 +60,7 @@ export const likeMovie = () => {
 
     if (likeMovie) {
       let counter = value + 1;
-      likeCount.innerHTML = counter;
+      likeCount.innerHTML = `Number of movies you like: ${counter}`;
   
       localStorage.setItem('likes', counter);
     }
@@ -65,7 +76,7 @@ export const dislikeMovie = () => {
 
     if (dislikeMovie) {
       let counter = value + 1;
-      dislikeCount.innerHTML = counter;
+      dislikeCount.innerHTML = `Number of movies you don't like: ${counter}`;
   
       localStorage.setItem('dislikes', counter);
     }
@@ -97,7 +108,7 @@ const createMovieTitle = (title) => {
 const createMovieRuntime = (runtime) => {
   const movieRuntime = document.createElement('h2');
   movieRuntime.setAttribute('id', 'movieRuntime');
-  movieRuntime.innerHTML = `Runtime: ${runtime} min.`;
+  movieRuntime.innerHTML = `<span class="accent">Runtime:</span> ${runtime} min.`;
 
   return movieRuntime;
 }
@@ -106,7 +117,7 @@ const createMovieRuntime = (runtime) => {
 const createMovieReleaseDate = (release_date) => {
   const movieReleaseDate = document.createElement('h2');
   movieReleaseDate.setAttribute('id', 'movieReleaseDate');
-  movieReleaseDate.innerHTML = `Released: ${release_date}`;
+  movieReleaseDate.innerHTML = `<span class="accent">Released:</span> ${release_date}`;
 
   return movieReleaseDate;
 }
@@ -124,7 +135,7 @@ const createMovieOverview = (overview) => {
 const createCastList = (cast) => {
   const castListParaghraph = document.createElement('p');
   castListParaghraph.setAttribute('id', 'movieCastList');
-  castListParaghraph.innerHTML = `<span class="bold">Starring:</span> ${cast}`;
+  castListParaghraph.innerHTML = `<span class="accent">Starring:</span> ${cast}`;
 
   return castListParaghraph;
 }
@@ -164,6 +175,7 @@ export const displayMovie = (movieInfo, cast) => {
     movieCastDiv.appendChild(movieCastList);
 
     showBtns();
+    
     likeBtn.onclick = likeMovie;
     dislikeBtn.onclick = dislikeMovie;
 };

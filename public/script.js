@@ -9,12 +9,13 @@ const genreRequestEndpoint = '/genre/movie/list';
 const requestParams = `?api_key=${tmdbKey}`;
 const urlToFetch = tmdbBaseUrl + genreRequestEndpoint + requestParams;
 
+
 try {
   const response = await fetch(urlToFetch);
   if (response.ok) {
     const jsonResponse = await response.json();
     const genres = jsonResponse.genres;
-    //console.log(genres);
+  
     return genres;
   }
 
@@ -24,21 +25,23 @@ try {
 };
 
 const getMovies = async () => {
+  let randomNumber = Math.ceil(Math.random() * 500); //Returns number 1-500, the scope for pages accepted by TMDB.
   const selectedGenre = getSelectedGenre();
   const discoverMovieEndpoint = '/discover/movie';
-  const requestParams = `?api_key=${tmdbKey}&with_genres=${selectedGenre}`;
+  const requestParams = `?api_key=${tmdbKey}&with_genres=${selectedGenre}&page=${randomNumber}`;
+  
   const urlToFetch = tmdbBaseUrl + discoverMovieEndpoint + requestParams;
 
   try {
     const response = await fetch(urlToFetch);
+    
     if (response.ok) {
       const jsonResponse = await response.json();
-
       const movies = jsonResponse.results;
-      console.log(jsonResponse);
+      
       return movies;
-    }
-
+    } 
+     
   } catch(error) {
     console.log(error);
   }
@@ -54,7 +57,7 @@ const getMovieInfo = async (movie) => {
     const response = await fetch(urlToFetch);
     if (response.ok) {
       const movieInfo = await response.json();
-      //console.log(movieInfo);
+      
       return movieInfo;
   } 
   } catch(error) {
@@ -74,39 +77,29 @@ const getMovieCast = async (movie) => {
     if (response.ok) {
       const jsonResponse = await response.json();
       const cast = jsonResponse.cast;
-      //console.log(cast);
       
-
      for (const i in cast) {
        const castIndex = cast[i].name;
-       //console.log(castIndex);
+       
        movieCast.push(castIndex);
       }
-      //console.log(movieCast);
     
-      return movieCast.join(", ");
+      return movieCast.slice(0, 6).join(", ");
       } 
-
 
     } catch(error) {
     console.log(error);
   }
 }
 
-getGenres();
-getMovies();
-
 // Gets a list of movies and ultimately displays the info of a random movie from the list
 export const showRandomMovie = async () => {
   const movieInfo = document.getElementById('movieInfo');
-  const likeCount = document.getElementById('count--likes');
-  const dislikeCount = document.getElementById('count--dislikes');
-
+  
 
   if (movieInfo.childNodes.length > 0) {
     clearCurrentMovie();
   };
-
 
 
 const movies = await getMovies();
