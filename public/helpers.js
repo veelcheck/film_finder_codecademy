@@ -81,7 +81,11 @@ const likeMovie = () => {
     likeCount.innerHTML = `<span class="hidden">Movies you </span>like: ${counter}`;
     localStorage.setItem('likes', counter);
   
-    likeList.innerHTML = titleArrayLikes.join(", ");
+    likeList.innerHTML = titleArrayLikes.join(", ") || JSON.parse(localStorage.getItem('titleLikes-stored'));
+    const titleLikestUpdated = likeList.innerHTML;
+    localStorage.setItem('titleLikes-stored', JSON.stringify(titleLikestUpdated));
+    
+    console.log(JSON.parse(localStorage.getItem('titleLikes-stored')));
 };
 
 
@@ -113,12 +117,18 @@ const dislikeMovie = () => {
 const reset = () => {
     localStorage.removeItem('likes');
     localStorage.removeItem('dislikes');
+    localStorage.removeItem('titleLikes-stored');
 
     const likeCount = document.getElementById('count--likes');
     const dislikeCount = document.getElementById('count--dislikes');
+    const likeList = document.getElementById('title-list-likes');
+    const dislikeList = document.getElementById('title-list-dislikes');
 
     likeCount.innerHTML = `<span class="hidden">Movies you </span>like: 0`;
     dislikeCount.innerHTML = `<span class="hidden">Movies you </span>don't like: 0`;
+    likeList.innerHTML = '';
+    dislikeList.innerHTML = '';
+    titleArrayLikes = [];
 }
 
 // Create HTML for movie poster
