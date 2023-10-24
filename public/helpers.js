@@ -25,17 +25,19 @@ getSelectedGenre();
 export const showBtns = () => {
     const btnDiv = document.getElementById('likeOrDislikeBtns');
     const countDiv = document.getElementById('likeOrDislikeCount');
+    const resetBtn = document.getElementById('reset');
     
     btnDiv.removeAttribute('hidden');
     countDiv.removeAttribute('hidden');
+    resetBtn.removeAttribute('hidden');
 
     const likeCount = document.getElementById('count--likes');
     const value = parseInt(localStorage.getItem('likes')) || 0;
-    likeCount.innerHTML = `Number of movies you like: ${value}`;
+    likeCount.innerHTML = `Movies you like: ${value}`;
 
     const dislikeCount = document.getElementById('count--dislikes');
     const value2 = parseInt(localStorage.getItem('dislikes')) || 0;
-    dislikeCount.innerHTML = `Number of movies you like: ${value2}`;
+    dislikeCount.innerHTML = `Movies you don't like: ${value2}`;
 };
 
 
@@ -60,7 +62,7 @@ export const likeMovie = () => {
 
     if (likeMovie) {
       let counter = value + 1;
-      likeCount.innerHTML = `Number of movies you like: ${counter}`;
+      likeCount.innerHTML = `Movies you like: ${counter}`;
   
       localStorage.setItem('likes', counter);
     }
@@ -76,12 +78,22 @@ export const dislikeMovie = () => {
 
     if (dislikeMovie) {
       let counter = value + 1;
-      dislikeCount.innerHTML = `Number of movies you don't like: ${counter}`;
+      dislikeCount.innerHTML = `Movies you don't like: ${counter}`;
   
       localStorage.setItem('dislikes', counter);
     }
-
 };
+
+const reset = () => {
+    localStorage.removeItem('likes');
+    localStorage.removeItem('dislikes');
+
+    const likeCount = document.getElementById('count--likes');
+    const dislikeCount = document.getElementById('count--dislikes');
+
+    likeCount.innerHTML = `Movies you like: 0`;
+    dislikeCount.innerHTML = `Movies you don't like: 0`;
+}
 
 // Create HTML for movie poster
 const createMoviePoster = (posterPath) => {
@@ -96,7 +108,7 @@ const createMoviePoster = (posterPath) => {
 
 // Create HTML for movie title
 const createMovieTitle = (title) => {
-    const titleHeader = document.createElement('h1');
+    const titleHeader = document.createElement('h2');
     titleHeader.setAttribute('id', 'movieTitle');
     titleHeader.innerHTML = title;
 
@@ -106,7 +118,7 @@ const createMovieTitle = (title) => {
 
 // Create HTML for runtime
 const createMovieRuntime = (runtime) => {
-  const movieRuntime = document.createElement('h2');
+  const movieRuntime = document.createElement('h3');
   movieRuntime.setAttribute('id', 'movieRuntime');
   movieRuntime.innerHTML = `<span class="accent">Runtime:</span> ${runtime} min.`;
 
@@ -115,7 +127,7 @@ const createMovieRuntime = (runtime) => {
 
 // Create HTML for release date
 const createMovieReleaseDate = (release_date) => {
-  const movieReleaseDate = document.createElement('h2');
+  const movieReleaseDate = document.createElement('h3');
   movieReleaseDate.setAttribute('id', 'movieReleaseDate');
   movieReleaseDate.innerHTML = `<span class="accent">Released:</span> ${release_date}`;
 
@@ -155,6 +167,7 @@ export const displayMovie = (movieInfo, cast) => {
     const movieCastDiv = document.getElementById('movieCast');
     const likeBtn = document.getElementById('likeBtn');
     const dislikeBtn = document.getElementById('dislikeBtn');
+    const resetBtn = document.getElementById('reset');
    
   
     // Create HTML content containing movie info
@@ -178,4 +191,5 @@ export const displayMovie = (movieInfo, cast) => {
     
     likeBtn.onclick = likeMovie;
     dislikeBtn.onclick = dislikeMovie;
+    resetBtn.onclick = reset;
 };

@@ -20,7 +20,7 @@
       <select name="genres" id="genres">
       </select>
     </form>
-    <button id="playBtn">Let's Play!</button>
+    <button class="button" id="playBtn">Let's Play!</button>
     
     <div id="movieInfo">
       <div id="moviePoster"></div>
@@ -32,8 +32,11 @@
           <button id="dislikeBtn"><i class="fa-solid fa-thumbs-down"></i></button>
         </div>
         <div id="likeOrDislikeCount" hidden>
-          <p class="count" id="count--likes"></p>
-          <p class="count" id="count--dislikes"></p>
+          <div class="count-wrapper">
+            <p class="count" id="count--likes"></p>
+            <p class="count" id="count--dislikes"></p>
+          </div>
+          <button class="button" id="reset" hidden>Reset the count</button>
         </div>
       </div>
     </div>

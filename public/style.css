@@ -1,17 +1,25 @@
+:root {
+  --mustard-clr: #fdc238;
+}
+
 body {
   background-color: #7f0920;
   color: #0a0408;
 }
 
-h1 {
+h2 {
   margin-top: 0;
+  margin-left: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--mustard-clr);
+  text-align: center;
 }
 
-h1, h2 {
+h2, h3 {
   letter-spacing: .1rem;
 }
 
-h2 {
+h3 {
   padding: 0;
   margin: 0;
   font-size: 1rem;
@@ -19,7 +27,7 @@ h2 {
 }
 
 .accent {
-  color: #fdc238;
+  color: var(--mustard-clr);
 }
 
 #appTitle {
@@ -39,7 +47,6 @@ h2 {
 
 #movieInfo {
   width:  90%;
-  margin:  32px auto;
   display: flex;
   margin: 1em auto;
 }
@@ -53,7 +60,8 @@ h2 {
   font-family: 'Questrial';
   color: white;
   line-height: 1.25;
-  margin: 0 auto;
+  margin-inline: auto;
+  margin-top: 4em;
 }
 
 img#moviePoster {
@@ -63,20 +71,23 @@ img#moviePoster {
   margin:  auto;
 }
 
-
 #movieTitle, #movieOverview, #movieRuntime, #movieReleaseDate, #movieCastList {
-  padding-inline:  32px;
+  padding-inline: 2rem;
+}
+
+.button {
+  padding: 7px 10px;
+  border-radius: 10px;
+  border-style: none;
+  background-color: #B97828;
+  cursor:  pointer;
 }
 
 #playBtn {
   margin-top: 20px;
   font-size: 25px;
   padding: 7px 10px;
-  border-radius: 10px;
-  border-style: none;
-  background-color: #B97828;
   color: #fdc238;
-  cursor:  pointer;
 }
 
 label {
@@ -90,19 +101,12 @@ select {
   height: auto;
 }
 
-.count {
-  margin: 0;
-  font-size: 16px;
-}
-
 #likeOrDislikeBtns {
   text-align: center;
-  margin: 0px auto;  
-}
-
-#likeOrDislikeCount {
-  padding: 15px 25px;
-
+  margin-left: 2rem; 
+  padding-block: 4em;
+  border-bottom: 1px solid #B97828;
+  border-top: 1px solid #B97828;
 }
 
 #likeBtn, #dislikeBtn {
@@ -112,7 +116,6 @@ select {
   border-style: none;
   cursor:  pointer;
 }
-
 
 #likeBtn {
   background-color: #249e57;
@@ -124,9 +127,28 @@ select {
   color: #910000;
 }
 
+#likeOrDislikeCount {
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+}
+
+.count {
+  margin: 0;
+  font-size: 1rem;
+  padding-right: 3em;
+}
+
+#reset {
+  color: #7f0920;
+  font-weight: 600; 
+  margin-block: 1em;
+}
+
 @media (max-width: 860px) {
-  h1 {
+  h2 {
     font-size: 1.3rem;
+    margin-left: 0;
   }
   
   #moviePoster {
@@ -140,9 +162,21 @@ select {
 
   #likeOrDislikeBtns {
     margin-block: .5em;
+    padding-block: 1em;
+    margin-left: 0;
   }
 
-  #movieCast {
-    -webkit-line-clamp: 2;
+  #likeOrDislikeCount {
+    padding-block: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
+
+  .count {
+    text-align: center;
+    padding-right: 0;
+  }
+
+  
 }
