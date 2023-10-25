@@ -22,7 +22,7 @@ export const getSelectedGenre = () => {
 getSelectedGenre();
 
 // Displays the like and dislike buttons on the page
-const showBtns = () => {
+export const showBtns = () => {
     const btnDiv = document.getElementById('likeOrDislikeBtns');
 
     btnDiv.removeAttribute('hidden');
@@ -30,11 +30,18 @@ const showBtns = () => {
 // My addition: displays like/displike count together with a reset count button
     const countDiv = document.getElementById('likeOrDislikeCount');
     const resetBtn = document.getElementById('reset');
+    const likeList = document.getElementById('title-list-likes');
+    const dislikeList = document.getElementById('title-list-dislikes');
     
     
     countDiv.removeAttribute('hidden');
     resetBtn.removeAttribute('hidden');
-    
+    likeList.removeAttribute('hidden');
+    dislikeList.removeAttribute('hidden');
+
+    //likeList.innerHTML = `No movies you'd like to watch.`;
+    //dislikeList.innerHTML = `No movies you don't like.`;
+
     const likeCount = document.getElementById('count--likes');
     const value = parseInt(localStorage.getItem('likes')) || 0;
     likeCount.innerHTML = `<span class="hidden">Movies you </span>like: ${value}`;
@@ -70,12 +77,11 @@ const likeMovie = () => {
 // My addition: counts and stores likes, shows title
     const likeCount = document.getElementById('count--likes');
     const likeList = document.getElementById('title-list-likes');
+    const dislikeList = document.getElementById('title-list-dislikes');
 
     const value = parseInt(localStorage.getItem('likes')) || 0;
     const currentTitle = localStorage.getItem('title');
     titleArrayLikes.push(currentTitle);
-
-    likeList.removeAttribute('hidden');
 
     let counter = value + 1;
     likeCount.innerHTML = `<span class="hidden">Movies you </span>like: ${counter}`;
@@ -109,9 +115,6 @@ const dislikeMovie = () => {
     const value = parseInt(localStorage.getItem('dislikes')) || 0;
     const currentTitle = localStorage.getItem('title');
     titleArrayDislikes.push(currentTitle);
-
-    
-    dislikeList.removeAttribute('hidden');
 
     let counter = value + 1;
     dislikeCount.innerHTML = `<span class="hidden">Movies you </span>don't like: ${counter}`;
@@ -148,9 +151,8 @@ const reset = () => {
 
     likeCount.innerHTML = `<span class="hidden">Movies you </span>like: 0`;
     dislikeCount.innerHTML = `<span class="hidden">Movies you </span>don't like: 0`;
-    likeList.innerHTML = '';
-    dislikeList.innerHTML = '';
-    titleArrayLikes = [];
+    likeList.innerHTML = `No movies you'd like to watch.`;
+    dislikeList.innerHTML = `No movies you don't like.`;
 }
 
 // Create HTML for movie poster
@@ -247,7 +249,7 @@ export const displayMovie = (movieInfo, cast) => {
     movieTextDiv.appendChild(movieReleaseDate);
     movieCastDiv.appendChild(movieCastList);
 
-    showBtns();
+    //showBtns();
     
     likeBtn.onclick = likeMovie;
     dislikeBtn.onclick = dislikeMovie;

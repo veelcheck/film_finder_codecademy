@@ -1,6 +1,6 @@
-import { populateGenreDropdown, getSelectedGenre, clearCurrentMovie, getRandomMovie, displayMovie } from "./helpers.js";
+import { populateGenreDropdown, getSelectedGenre, clearCurrentMovie, getRandomMovie, displayMovie, showBtns} from "./helpers.js";
 
-const tmdbKey = '';
+const tmdbKey = 'bb7dd08afc8f17c5c7bdcace1728c3e2';
 const tmdbBaseUrl = 'https://api.themoviedb.org/3';
 const playBtn = document.getElementById('playBtn');
 
@@ -108,6 +108,7 @@ const randomMovie = await getRandomMovie(movies);
 const info = await getMovieInfo(randomMovie);
 const cast = await getMovieCast(randomMovie);
 displayMovie(info, cast);
+showBtns();
 };
 
 getGenres().then(populateGenreDropdown);
