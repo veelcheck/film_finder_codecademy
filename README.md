@@ -11,8 +11,8 @@ My input:
 - createCastList() - renders HTML for getMovieCast(),
 - alternated getMovies() - the original one selected a random movie only from the 1st page - I made it choose random page form 1 to 500,
 - like and dislike count displayed + reset() for a reset count button (localStorage),
-- titles of liked and disliked movies - this one, I am aware, still needs some working on it,
+- titles of liked and disliked movies displayed (localStorage),
 - all the little alternations needed for the code to work,
-- responsive layout  
+- responsive layout.  
 
 [see demo version](https://veelcheck.github.io/film_finder_codecademy/)
