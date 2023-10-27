@@ -81,13 +81,12 @@ const likeMovie = () => {
     const value = parseInt(localStorage.getItem('likes')) || 0;
     const currentTitle = localStorage.getItem('title');
     titleArrayLikes.push(currentTitle);
-
+    
     let counter = value + 1;
     likeCount.innerHTML = `<span class="hidden">Movies you </span>like: ${counter}`;
     localStorage.setItem('likes', counter);
 
-    const titleArrayLikesJoined = titleArrayLikes.join(" || ");
-    
+    let titleArrayLikesJoined = titleArrayLikes.join(" || ");
     
     if (counter === 1) {
         likeList.innerHTML = currentTitle;
@@ -95,13 +94,15 @@ const likeMovie = () => {
         return 
     } else {
         const titlesUnpacked = JSON.parse(localStorage.getItem('titleLikes-stored'));
-        likeList.innerHTML = `${titlesUnpacked} || ${currentTitle}`;
+        titleArrayLikesJoined = `${titlesUnpacked} || ${currentTitle}`;
+
+        likeList.innerHTML = titleArrayLikesJoined;
+        
         localStorage.setItem('titleLikes-stored', JSON.stringify(titleArrayLikesJoined));
     }
 
     
 };
-
 
 
 // After disliking a movie, clears the current movie from the screen and gets another random movie
@@ -121,7 +122,7 @@ const dislikeMovie = () => {
     dislikeCount.innerHTML = `<span class="hidden">Movies you </span>don't like: ${counter}`;
     localStorage.setItem('dislikes', counter);
 
-    const titleArrayDislikesJoined = titleArrayDislikes.join(" || ");
+    let titleArrayDislikesJoined = titleArrayDislikes.join(" || ");
 
     if (counter === 1) {
         dislikeList.innerHTML = currentTitle;
@@ -129,7 +130,8 @@ const dislikeMovie = () => {
         return
     } else {
         const titlesUnpacked = JSON.parse(localStorage.getItem('titleDislikes-stored'));
-        dislikeList.innerHTML = `${titlesUnpacked} || ${currentTitle}`;
+        titleArrayDislikesJoined = `${titlesUnpacked} || ${currentTitle}`;
+        dislikeList.innerHTML = titleArrayDislikesJoined;
         localStorage.setItem('titleDislikes-stored', JSON.stringify(titleArrayDislikesJoined));
     }
 
