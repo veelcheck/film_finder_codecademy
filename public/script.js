@@ -19,6 +19,7 @@ const getInput = () => {
 
 getInput();
 
+
 let tmdbKey = input;
 const tmdbBaseUrl = 'https://api.themoviedb.org/3';
 const playBtn = document.getElementById('playBtn');
@@ -32,7 +33,7 @@ const getGenres = async () => {
 
   // Lets the user rewrite incorrect API key
   if (!response.ok) {
-    input = window.prompt(`Wrong API key. Try again.`);
+    input = window.prompt(`Wrong API key. Try again and refresh the page.`);
     localStorage.setItem('input', input);
   }
 
