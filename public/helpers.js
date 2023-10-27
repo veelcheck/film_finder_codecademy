@@ -77,7 +77,6 @@ const likeMovie = () => {
 // My addition: counts and stores likes, shows title
     const likeCount = document.getElementById('count--likes');
     const likeList = document.getElementById('title-list-likes');
-    const dislikeList = document.getElementById('title-list-dislikes');
 
     const value = parseInt(localStorage.getItem('likes')) || 0;
     const currentTitle = localStorage.getItem('title');
@@ -87,19 +86,22 @@ const likeMovie = () => {
     likeCount.innerHTML = `<span class="hidden">Movies you </span>like: ${counter}`;
     localStorage.setItem('likes', counter);
 
-    const titleArrayLikesJoined = titleArrayLikes.join(", ");
+    const titleArrayLikesJoined = titleArrayLikes.join(" || ");
+    
     
     if (counter === 1) {
         likeList.innerHTML = currentTitle;
         localStorage.setItem('titleLikes-stored', JSON.stringify(titleArrayLikesJoined));
-        return
+        return 
     } else {
         const titlesUnpacked = JSON.parse(localStorage.getItem('titleLikes-stored'));
-        likeList.innerHTML = `${titlesUnpacked}, ${currentTitle}`;
+        likeList.innerHTML = `${titlesUnpacked} || ${currentTitle}`;
         localStorage.setItem('titleLikes-stored', JSON.stringify(titleArrayLikesJoined));
     }
 
+    
 };
+
 
 
 // After disliking a movie, clears the current movie from the screen and gets another random movie
@@ -121,18 +123,16 @@ const dislikeMovie = () => {
 
     const titleArrayDislikesJoined = titleArrayDislikes.join(" || ");
 
-    dislikeList.innerHTML = titleArrayDislikes.join(" || ");
-
     if (counter === 1) {
         dislikeList.innerHTML = currentTitle;
         localStorage.setItem('titleDislikes-stored', JSON.stringify(titleArrayDislikesJoined));
+        return
     } else {
         const titlesUnpacked = JSON.parse(localStorage.getItem('titleDislikes-stored'));
-        dislikeList.innerHTML = `${titlesUnpacked}, ${currentTitle}`;
+        dislikeList.innerHTML = `${titlesUnpacked} || ${currentTitle}`;
         localStorage.setItem('titleDislikes-stored', JSON.stringify(titleArrayDislikesJoined));
     }
 
-    //localStorage.setItem('titleDislikes-stored', JSON.stringify(titleArrayDislikesJoined));
 };
     
 
@@ -152,6 +152,8 @@ const reset = () => {
     dislikeCount.innerHTML = `<span class="hidden">Movies you </span>don't like: 0`;
     likeList.innerHTML = `No movies you'd like to watch.`;
     dislikeList.innerHTML = `No movies you don't like.`;
+    titleArrayLikes = [];
+    titleArrayDislikes = [];
 }
 
 // Create HTML for movie poster
