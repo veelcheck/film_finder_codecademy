@@ -2,7 +2,7 @@ import { populateGenreDropdown, getSelectedGenre, clearCurrentMovie, getRandomMo
 
 let input;
 
-// Gets the API key for the user
+// Gets the API key from the user
 const getInput = () => {
   const inputOutOfStorage = localStorage.getItem('input');
 
@@ -19,38 +19,39 @@ const getInput = () => {
 
 getInput();
 
-
 let tmdbKey = input;
 const tmdbBaseUrl = 'https://api.themoviedb.org/3';
 const playBtn = document.getElementById('playBtn');
 
 const getGenres = async () => {
-const genreRequestEndpoint = '/genre/movie/list';
-const requestParams = `?api_key=${tmdbKey}`;
-let urlToFetch = tmdbBaseUrl + genreRequestEndpoint + requestParams;
+  const genreRequestEndpoint = '/genre/movie/list';
+  const requestParams = `?api_key=${tmdbKey}`;
+  let urlToFetch = tmdbBaseUrl + genreRequestEndpoint + requestParams;
 
+  let response = await fetch(urlToFetch);
 
-try {
-  const response = await fetch(urlToFetch);
-  
-  // Lets the user to correct their API key
+  // Lets the user rewrite incorrect API key
   if (!response.ok) {
     input = window.prompt(`Wrong API key. Try again.`);
     localStorage.setItem('input', input);
   }
 
-   tmdbKey = input;
+  tmdbKey = input;
+  urlToFetch = tmdbBaseUrl + genreRequestEndpoint + requestParams;
+  response = await fetch(urlToFetch);
 
-  if (response.ok) {
-    const jsonResponse = await response.json();
-    const genres = jsonResponse.genres;
+  try {
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      const genres = jsonResponse.genres;
+    
+      return genres;
+    }
+
+    } catch(error) {
+      console.log(error);
+    }
   
-    return genres;
-  }
-
-  } catch(error) {
-    console.log(error);
-  }
 };
 
 const getMovies = async () => {
