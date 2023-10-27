@@ -33,7 +33,7 @@ const getGenres = async () => {
 
   // Lets the user rewrite incorrect API key
   if (!response.ok) {
-    input = window.prompt(`Wrong API key. Try again and refresh the page.`);
+    input = window.prompt(`Wrong API key. Try again and REFRESH the page.`);
     localStorage.setItem('input', input);
   }
 
