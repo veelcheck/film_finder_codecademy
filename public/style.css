@@ -154,6 +154,10 @@ select {
   margin-block: 1em;
 }
 
+.title-list {
+  padding-inline: .5em;
+}
+
 #title-list-likes {
   background: rgb(36, 158, 87, 60%);
 }
@@ -186,10 +190,6 @@ select {
     margin-block: .5em;
     padding-block: 1em;
     margin-left: 0;
-  }
-
-  .title-list {
-    padding-inline: .5em;
   }
   
 }

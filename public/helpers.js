@@ -99,7 +99,6 @@ const likeMovie = () => {
         localStorage.setItem('titleLikes-stored', JSON.stringify(titleArrayLikesJoined));
     }
 
-    //localStorage.setItem('titleLikes-stored', JSON.stringify(titleArrayLikesJoined));
 };
 
 

@@ -19,6 +19,7 @@ const getInput = () => {
 
 getInput();
 
+//localStorage.removeItem('input');
 
 let tmdbKey = input;
 const tmdbBaseUrl = 'https://api.themoviedb.org/3';
@@ -36,10 +37,6 @@ const getGenres = async () => {
     input = window.prompt(`Wrong API key. Try again and REFRESH the page.`);
     localStorage.setItem('input', input);
   }
-
-  tmdbKey = input;
-  urlToFetch = tmdbBaseUrl + genreRequestEndpoint + requestParams;
-  response = await fetch(urlToFetch);
 
   try {
     if (response.ok) {
