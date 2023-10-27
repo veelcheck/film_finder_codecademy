@@ -1,17 +1,46 @@
 import { populateGenreDropdown, getSelectedGenre, clearCurrentMovie, getRandomMovie, displayMovie, showBtns} from "./helpers.js";
 
-const tmdbKey = 'bb7dd08afc8f17c5c7bdcace1728c3e2';
+let input;
+
+// Gets the API key for the user
+const getInput = () => {
+  const inputOutOfStorage = localStorage.getItem('input');
+
+  if (inputOutOfStorage) {
+    input = inputOutOfStorage;
+    return
+
+  } else {
+    input = window.prompt(`Enter your API key.`);
+  }
+  
+  localStorage.setItem('input', input);
+}
+
+getInput();
+
+
+let tmdbKey = input;
 const tmdbBaseUrl = 'https://api.themoviedb.org/3';
 const playBtn = document.getElementById('playBtn');
 
 const getGenres = async () => {
 const genreRequestEndpoint = '/genre/movie/list';
 const requestParams = `?api_key=${tmdbKey}`;
-const urlToFetch = tmdbBaseUrl + genreRequestEndpoint + requestParams;
+let urlToFetch = tmdbBaseUrl + genreRequestEndpoint + requestParams;
 
 
 try {
   const response = await fetch(urlToFetch);
+  
+  // Lets the user to correct their API key
+  if (!response.ok) {
+    input = window.prompt(`Wrong API key. Try again.`);
+    localStorage.setItem('input', input);
+  }
+
+   tmdbKey = input;
+
   if (response.ok) {
     const jsonResponse = await response.json();
     const genres = jsonResponse.genres;
