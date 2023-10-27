@@ -119,9 +119,9 @@ const dislikeMovie = () => {
     dislikeCount.innerHTML = `<span class="hidden">Movies you </span>don't like: ${counter}`;
     localStorage.setItem('dislikes', counter);
 
-    const titleArrayDislikesJoined = titleArrayDislikes.join(", ");
+    const titleArrayDislikesJoined = titleArrayDislikes.join(" || ");
 
-    dislikeList.innerHTML = titleArrayDislikes.join(", ");
+    dislikeList.innerHTML = titleArrayDislikes.join(" || ");
 
     if (counter === 1) {
         dislikeList.innerHTML = currentTitle;
