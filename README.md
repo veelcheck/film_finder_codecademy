@@ -7,7 +7,7 @@ Many helper functions were handed to me on a plate in this one, I was also guide
 NEVERTHELESS, I have learnt a lot, which is what it is all about :)
 
 My input: 
-- API key form the user aquired by prompt(),
+- API key fr0m the user aquired by prompt(),
 - createMovieRuntime() - renders HTML for runtime,
 - createMovieReleaseDate() - renders HTML for release date,
 - getMovieCast() - gets info about random movie cast,
