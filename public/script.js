@@ -18,9 +18,12 @@ apiKeyForm.addEventListener('submit', function (event) {
   saveApiKeyLocally(apiKey);
 });
 
+const displayApiKeyWarning = (message) => {
+  alert(message);
+};
+
 
 const tmdbKey = localStorage.getItem('api_key');
-console.log(tmdbKey);
 const tmdbBaseUrl = 'https://api.themoviedb.org/3';
 const playBtn = document.getElementById('playBtn');
 
@@ -35,11 +38,17 @@ const getGenres = async () => {
     if (response.ok) {
       const jsonResponse = await response.json();
       const genres = jsonResponse.genres;
-      //console.log(genres);
       return genres;
+    } else {
+      if (response.status === 401 || response.status === 403) {
+        displayApiKeyWarning('Invalid API Key. Please check your API key and --REFRESH-- the page.')
+      } else {
+        console.error(`Failed to fetch genres. Status: ${response.status}`);
+      }
     }
   } catch(error) {
       console.log(error);
+      displayApiKeyWarning('An error occurred while fetching genres. Please try again.');
   }
 };
 
