@@ -1,0 +1,207 @@
+:root {
+  --mustard-clr: #fdc238;
+}
+
+body {
+  background-color: #7f0920;
+  color: #0a0408;
+}
+
+h2 {
+  margin-top: 0;
+  margin-left: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--mustard-clr);
+  text-align: center;
+}
+
+h2, h3 {
+  letter-spacing: .1rem;
+}
+
+h3 {
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+ol {
+  padding: 0;
+  list-style-position: inside;
+}
+
+.accent {
+  color: var(--mustard-clr);
+}
+
+#appTitle {
+  text-align: center;
+  margin: 0px auto;
+  display: block;
+  font-family: 'Staatliches', sans-serif;
+  font-size: 5rem;
+}
+
+#genreForm, #playBtn {
+  text-align: center;
+  margin: 0px auto;
+  display: block;
+  font-family: 'Fredoka One', sans-serif;
+}
+
+#movieInfo {
+  width:  90%;
+  display: flex;
+  margin: 1em auto;
+}
+
+#moviePoster {
+  width:  100%;
+  margin-top: 4em;
+}
+
+#movieOtherInfo {
+  width: 100%;
+  max-width: 1000px;
+  font-family: 'Questrial';
+  color: white;
+  line-height: 1.25;
+  margin-inline: auto;
+  margin-top: 4em;
+}
+
+img#moviePoster {
+  width:  100%;
+  height:  auto;
+  display:  block;
+  margin:  auto;
+}
+
+#movieTitle, #movieOverview, #movieRuntime, #movieReleaseDate, #movieCastList {
+  padding-inline: 2rem;
+}
+
+.button {
+  padding: 7px 10px;
+  border-radius: 10px;
+  border-style: none;
+  background-color: #B97828;
+  cursor:  pointer;
+}
+
+#playBtn {
+  margin-top: 20px;
+  font-size: 25px;
+  padding: 7px 10px;
+  color: #fdc238;
+}
+
+label {
+  display: block;
+  font-size: 35px;
+  margin-bottom: 5px;
+}
+
+select {
+  width: 200px;
+  height: auto;
+}
+
+#likeOrDislikeBtns, .title-list {
+  text-align: center;
+  margin-left: 2rem; 
+  border-bottom: 1px solid #B97828;
+  border-top: 1px solid #B97828;
+}
+
+#likeOrDislikeBtns {
+  padding-block: 4em;
+}
+
+.title-list {
+  min-height: 5rem;
+}
+
+#likeBtn, #dislikeBtn {
+  padding: 15px 25px;
+  font-size: 25px;
+  border-radius: 12px;
+  border-style: none;
+  cursor:  pointer;
+}
+
+#likeBtn {
+  background-color: #249e57;
+  color: darkgreen;
+}
+
+#dislikeBtn {
+  background-color: #c74a4a;
+  color: #910000;
+}
+
+#likeOrDislikeCount {
+  padding: 1rem 2rem;
+
+}
+
+.count-wrapper {
+  display: grid;
+  grid-template-columns: 25% auto 30%;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 1em;
+}
+
+.count {
+  margin: 0;
+  font-size: 1rem;
+  text-align: center;
+}
+
+#reset {
+  color: #7f0920;
+  font-weight: 600; 
+  margin-block: 1em;
+}
+
+.title-list {
+  padding-inline: .5em;
+}
+
+#title-list-likes {
+  background: rgb(36, 158, 87, 60%);
+}
+
+#title-list-dislikes {
+  background: rgb(199, 74, 74, 60%);
+} 
+
+@media (max-width: 860px) {
+  h2 {
+    font-size: 1.3rem;
+    margin-left: 0;
+  }
+
+  #moviePoster, .hidden  {
+    visibility: hidden;
+    display: none;
+  }
+
+  #movieTitle, 
+  #movieOverview, 
+  #movieRuntime, 
+  #movieReleaseDate, 
+  #movieCastList, 
+  #likeOrDislikeCount  {
+    padding-inline: .5em;
+  }
+
+  #likeOrDislikeBtns, .title-list {
+    margin-block: .5em;
+    padding-block: 1em;
+    margin-left: 0;
+  }
+  
+}
