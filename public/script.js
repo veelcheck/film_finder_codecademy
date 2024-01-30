@@ -8,6 +8,10 @@ function saveApiKeyLocally(apiKey) {
   localStorage.setItem('api_key', apiKey);
 }
 
+const hideApiKeyForm = () => {
+  apiKeyForm.style.display = 'none';
+};
+
 apiKeyForm.addEventListener('submit', function (event) {
   event.preventDefault();
 
@@ -21,6 +25,7 @@ apiKeyForm.addEventListener('submit', function (event) {
 const displayApiKeyWarning = (message) => {
   alert(message);
 };
+
 
 
 const tmdbKey = localStorage.getItem('api_key');
@@ -38,6 +43,8 @@ const getGenres = async () => {
     if (response.ok) {
       const jsonResponse = await response.json();
       const genres = jsonResponse.genres;
+      hideApiKeyForm();
+      
       return genres;
     } else {
       if (response.status === 401 || response.status === 403) {

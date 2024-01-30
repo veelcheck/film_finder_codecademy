@@ -7,7 +7,8 @@ Many helper functions were handed to me on a plate in this one, I was also guide
 NEVERTHELESS, I have learnt a lot, which is what it is all about :)
 
 My input: 
-- entering your own API key is required and stored in localStorage,
+- entering your own API key is required through a form and stored in localStorage,
+- if API is correct, the form disappears from UI,
 - createMovieRuntime() - renders HTML for runtime,
 - createMovieReleaseDate() - renders HTML for release date,
 - getMovieCast() - gets info about random movie cast,
