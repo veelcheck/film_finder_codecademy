@@ -43,11 +43,15 @@ ol {
   font-size: 5rem;
 }
 
-#genreForm, #playBtn {
+#genreForm, #playBtn, #apiKeyForm, #playBtn-sub {
   text-align: center;
-  margin: 0px auto;
+  margin: 0 auto;
   display: block;
   font-family: 'Fredoka One', sans-serif;
+}
+
+#apiKeyForm {
+  padding-block: 1rem;
 }
 
 #movieInfo {
@@ -90,7 +94,7 @@ img#moviePoster {
   cursor:  pointer;
 }
 
-#playBtn {
+#playBtn, #playBtn-sub {
   margin-top: 20px;
   font-size: 25px;
   padding: 7px 10px;

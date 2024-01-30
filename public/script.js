@@ -2,7 +2,25 @@ import { populateGenreDropdown, getSelectedGenre, clearCurrentMovie, getRandomMo
 import { titleArrayLikes, titleArrayDislikes } from "./helpers.js";
 import { likeListElement, dislikeListElement } from "./helpers.js";
 
-const tmdbKey = '';
+const apiKeyForm = document.getElementById('apiKeyForm');
+
+function saveApiKeyLocally(apiKey) {
+  localStorage.setItem('api_key', apiKey);
+}
+
+apiKeyForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const apiKeyInput = document.getElementById('apiKey');
+  const apiKey = apiKeyInput.value;
+
+  // Save the API key locally
+  saveApiKeyLocally(apiKey);
+});
+
+
+const tmdbKey = localStorage.getItem('api_key');
+console.log(tmdbKey);
 const tmdbBaseUrl = 'https://api.themoviedb.org/3';
 const playBtn = document.getElementById('playBtn');
 
