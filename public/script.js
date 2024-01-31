@@ -3,15 +3,24 @@ import { titleArrayLikes, titleArrayDislikes } from "./helpers.js";
 import { likeListElement, dislikeListElement } from "./helpers.js";
 
 const apiKeyForm = document.getElementById('apiKeyForm');
+const submitBtn = document.getElementById('playBtn-sub');
 
+// Saves API KEY into a local storage.
 function saveApiKeyLocally(apiKey) {
   localStorage.setItem('api_key', apiKey);
 }
 
+// Refreshes the page, when a submit button is hit.
+function refresh() {
+  submitBtn.addEventListener('click', location.reload());
+}
+
+// Hides form.
 const hideApiKeyForm = () => {
   apiKeyForm.style.display = 'none';
 };
 
+// Handles the api input.
 apiKeyForm.addEventListener('submit', function (event) {
   event.preventDefault();
 
@@ -20,12 +29,12 @@ apiKeyForm.addEventListener('submit', function (event) {
 
   // Save the API key locally
   saveApiKeyLocally(apiKey);
+  refresh();
 });
 
 const displayApiKeyWarning = (message) => {
   alert(message);
 };
-
 
 
 const tmdbKey = localStorage.getItem('api_key');
