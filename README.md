@@ -21,4 +21,6 @@ My input:
 - all the little alternations needed for the code to work,
 - responsive layout.  
 
-[see demo version]( https://veelcheck.github.io/film_finder_codecademy/)
+[see demo version]( https://veelcheck.github.io/film_finder_codecademy/)  
+  
+![screenshot](img/film_finder_demo.jpg)
